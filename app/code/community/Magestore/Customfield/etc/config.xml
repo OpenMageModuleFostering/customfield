@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magestore_Customfield>
+            <version>0.1.0</version>
+        </Magestore_Customfield>
+    </modules>
+    <frontend>
+        <routers>
+            <customfield>
+                <use>standard</use>
+                <args>
+                    <module>Magestore_Customfield</module>
+                    <frontName>customfield</frontName>
+                </args>
+            </customfield>
+        </routers>
+        <layout>
+            <updates>
+                <customfield>
+                    <file>customfield.xml</file>
+                </customfield>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<customfield>
+				<use>admin</use>
+				<args>
+					<module>Magestore_Customfield</module>
+					<frontName>customfield</frontName>
+				</args>
+			</customfield>
+        </routers>
+    </admin>
+    <adminhtml>
+		<events>
+
+	      <catalog_product_prepare_save> 
+		        <observers>
+		          <magestore_customfield_observer>
+		            <type>singleton</type>
+		            <class>customfield/attribute</class>
+		            <method>save_product_attribute</method>
+		          </magestore_customfield_observer>
+		        </observers>
+		    </catalog_product_prepare_save>
+		</events>
+		<menu>
+			<customfield module="customfield">
+				<title>Customfield</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<blocks module="customfield">
+						<title>Manage Blocks</title>
+						<sort_order>0</sort_order>
+						<action>customfield/adminhtml_block/edit/id/1</action>
+					</blocks>
+					
+					<attributes module="customfield">
+						<title>Manage Attributes</title>
+						<sort_order>0</sort_order>
+						<action>customfield/adminhtml_attribute</action>
+					</attributes>
+				</children>
+			</customfield>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Magestore_Customfield>
+							<title>Customfield Module</title>
+							<sort_order>10</sort_order>
+						</Magestore_Customfield>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<customfield>
+					<file>customfield.xml</file>
+				</customfield>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <customfield>
+                <class>Magestore_Customfield_Model</class>
+                <resourceModel>customfield_mysql4</resourceModel>
+            </customfield>
+            <customfield_mysql4>
+                <class>Magestore_Customfield_Model_Mysql4</class>
+                <entities>
+                    <block>
+                        <table>customfield_block</table>												
+                    </block>
+					
+					 <attribute>
+                        <table>customfield_attribute</table>
+                    </attribute>
+					
+					<attributevalue>
+						  <table>catalog_product_entity_text</table>
+					</attributevalue>
+                </entities>
+            </customfield_mysql4>
+        </models>
+        <resources>
+            <customfield_setup>
+                <setup>
+                    <module>Magestore_Customfield</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customfield_setup>
+            <customfield_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customfield_write>
+            <customfield_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customfield_read>
+        </resources>
+        <blocks>
+            <customfield>
+                <class>Magestore_Customfield_Block</class>
+            </customfield>
+			
+			<adminhtml>
+				<rewrite>
+					<catalog_product_edit_tabs>Magestore_Customfield_Block_Adminhtml_Catalog_Product_Edit_Tabs</catalog_product_edit_tabs>
+				</rewrite>
+			</adminhtml>
+        </blocks>
+        <helpers>
+            <customfield>
+                <class>Magestore_Customfield_Helper</class>
+            </customfield>
+        </helpers>
+    </global>
+</config>

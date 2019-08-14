@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/CustomField",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "In some case you want to add some additional text for downloadable link file into product page such as user manual for your product.",
+    "authors": [
+    {
+        "name": "Magestore",
+        "email": "magestore@gmail.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <customfield_adminhtml_block_index>
+        <reference name="content">
+            <block type="customfield/adminhtml_block" name="block" />
+        </reference>
+    </customfield_adminhtml_block_index>
+	
+	 <customfield_adminhtml_attribute_index>
+        <reference name="content">
+            <block type="customfield/adminhtml_attribute" name="attribute" />
+        </reference>
+    </customfield_adminhtml_attribute_index>
+</layout>
